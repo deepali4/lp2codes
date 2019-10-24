@@ -1,0 +1,16 @@
+import pandas as pd
+
+
+data = pd.read_csv("iris.csv", names=["sepal_length","sepal_width","petal_length","petal_width","class"])
+
+
+data.dtypes
+
+
+data.head()
+
+data.describe()
+
+data.hist()
+
+data.boxplot()

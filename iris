@@ -1,0 +1,47 @@
+import numpy as np
+import pandas as pd
+%matplotlib inline
+
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+dat=pd.read_csv('Iris.csv')
+
+dat[0:10]
+
+
+dat.shape 
+list(dat.columns)
+
+
+dat.dtypes
+
+
+dat['x1'].describe()
+
+
+
+plt.hist(dat['x1'],bins=30)           ##############plot histogram
+plt.ylabel('No of times')
+plt.show()
+
+
+plt.hist(dat['x2'],bins=30)           ##############plot histogram
+plt.ylabel('No of times')
+plt.show()
+
+
+plt.hist(dat['x3'],bins=30)           ##############plot histogram
+plt.ylabel('No of times')
+plt.show()
+
+
+plt.hist(dat['x4'],bins=30)           ##############plot histogram
+plt.ylabel('No of times')
+plt.show()
+
+sns.boxplot(y=dat['x1'])			#######################box plot for single feature  same for rest
+sns.boxplot(x='class',y=dat['x2'])
+sns.boxplot(x=dat['class'],y=dat['x2'])   ###########one vs all
+sns.boxplot(data=dat.ix[:,0:4])  #################for multiple
