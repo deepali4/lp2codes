@@ -1,0 +1,62 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import MinMaxScaler
+
+
+data = pd.read_csv("diabetes.csv")
+
+columns = data.columns
+
+columns = [col_name for col_name in columns if not col_name=="Outcome"]
+data.head()
+data["Outcome"].hist()
+
+
+
+y = data["Outcome"]
+X = data.drop(["Outcome"], axis=1)
+
+
+X.head()
+
+
+
+#scale values
+scaler = MinMaxScaler()
+X[columns] = scaler.fit_transform(X)
+
+
+X.head()
+
+
+y.head()
+
+
+train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.3)
+
+
+train_X.head()
+
+
+train_y.head()
+
+
+test_X.head()
+
+
+test_y.head()
+
+
+model = GaussianNB()
+model.fit(train_X, train_y)
+
+
+predictions = model.predict(test_X)
+
+model.score(test_X, test_y)
+
+
+confusion_matrix(test_y, predictions)
+
